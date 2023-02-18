@@ -16,7 +16,9 @@ public class ProductManager {
         for (Product product : repository.getProducts()) {
             if (matches(product, text)) {
                 Product[] tmp = new Product[result.length + 1];
-                System.arraycopy(result, 0, tmp, 0, result.length);
+                for (int i = 0; i < result.length; i++) {
+                    tmp[i] = result[i];
+                }
                 tmp[tmp.length - 1] = product;
                 result = tmp;
             }
@@ -25,22 +27,10 @@ public class ProductManager {
     }
 
     public boolean matches(Product product, String search) {
-        if (product instanceof Book) {
-            Book book = (Book) product;
-            if (product.getName().contains(search)) {
-                return true;
-            }
-            return book.getAuthor().contains(search);
-        }
-        if (product instanceof Smartphonev) {
-            Smartphonev smartphone = (Smartphonev) product;
-            if (smartphone.getName().contains(search)) {
-                return true;
-            }
-            return smartphone.getManufacturer().equalsIgnoreCase(search);
-        }
-        return false;
+        return product.getName().contains(search);
     }
 
 }
+
+
 

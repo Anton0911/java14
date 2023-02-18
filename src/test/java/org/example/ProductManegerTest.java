@@ -1,5 +1,6 @@
 package org.example;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ public class ProductManegerTest {
     ProductManager manager = new ProductManager(repository);
     Product book = new Book(1, "Война и мир", 300, "Лев Толстой");
     Product book1 = new Book(2, "Евгений Онегин", 450, "Пушкин");
-    Product smartphone = new Smartphonev (3, "One Plus 6", 25_000, "BBK Electronics");
+    Product smartphone = new Smartphonev(3, "One Plus 6", 25_000, "BBK Electronics");
     Product book3 = new Book(4, "Мертвые души", 0, "Гоголь");
 
 
@@ -21,15 +22,7 @@ public class ProductManegerTest {
         manager.add(smartphone);
         manager.add(book3);
 
-
     }
-    @Test
-    public void shouldFindAuthor() {
-        Product[] expected = {book};
-        Product[] actual = manager.searchBy("Лев Толстой");
-        assertArrayEquals(expected, actual);
-    }
-
 
     @Test
     public void shouldFindNameBook() {
@@ -42,17 +35,10 @@ public class ProductManegerTest {
     public void shouldFindPhoneName() {
         Product[] expected = {smartphone};
         Product[] actual = manager.searchBy("One Plus 6");
-       assertArrayEquals(expected, actual);
-    }
-
-
-
-    @Test
-    public void shouldFindPhoneManufacturer() {
-        Product[] expected = {smartphone};
-        Product[] actual = manager.searchBy("BBK Electronics");
         assertArrayEquals(expected, actual);
     }
+
+
     @Test
     public void shouldNotFindPhoneManufacturer() {
         Product[] expected = {};
@@ -67,5 +53,5 @@ public class ProductManegerTest {
         assertArrayEquals(expected, actual);
     }
 
-   }
+}
 

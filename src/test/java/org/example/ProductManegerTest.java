@@ -13,6 +13,7 @@ public class ProductManegerTest {
     Product book1 = new Book(2, "Евгений Онегин", 450, "Пушкин");
     Product smartphone = new Smartphonev(3, "One Plus 6", 25_000, "BBK Electronics");
     Product book3 = new Book(4, "Мертвые души", 0, "Гоголь");
+    Product book2 = new Book(5, "Капитанская дочка", 450, "Пушкин");
 
 
     @BeforeEach
@@ -21,6 +22,7 @@ public class ProductManegerTest {
         manager.add(book1);
         manager.add(smartphone);
         manager.add(book3);
+        manager.add(book2);
 
     }
 
@@ -52,6 +54,17 @@ public class ProductManegerTest {
         Product[] actual = manager.searchBy("рей бредбери");
         assertArrayEquals(expected, actual);
     }
-
+    @Test
+    public void shouldFindAutorBook() {
+        Product[] expected = {book2};
+        Product[] actual = manager.searchBy("Капитанская дочка");
+        assertArrayEquals(expected, actual);
+    }
+    @Test
+    void shouldAdd() {
+        Product[] expected = {book,book1,smartphone,book3,book2};
+        Product[] actual = repository.getProducts();
+        assertArrayEquals(expected, actual);
+    }
 }
 

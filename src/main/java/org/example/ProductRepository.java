@@ -14,6 +14,12 @@ public class ProductRepository {
     }
 
     public void removeById(int id) {
+        if (id < 0) {
+            throw  new NotFoundException(
+                    "такой ID не существует" + id
+            );
+
+        }
         Product[] tmp = new Product[products.length - 1];
         int copyToIndex = 0;
         for (Product product : products) {

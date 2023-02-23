@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ProductRepositoryTest {
     ProductRepository repository = new ProductRepository();
@@ -31,5 +32,10 @@ public class ProductRepositoryTest {
         Product[] expected = {book1, book};
         Product[] actual = repository.getProducts();
         assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void exclusionDeletionById() {
+
+        assertThrows(NotFoundException.class, () -> {repository.removeById(-100);});
     }
 }
